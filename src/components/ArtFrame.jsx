@@ -11,6 +11,8 @@ import Tree from "./Tree";
 import Tree2 from "./Tree2";
 import Wind from "./Wind";
 import Bird1 from "./Bird1";
+import Bird2 from "./Bird2";
+import River from "./River";
 
 const ArtFrame = () => {
     const { volumes } = useContext(AudioContext);
@@ -31,27 +33,30 @@ const ArtFrame = () => {
                             <Fire />
                         </motion.div>
                     )}
+
                     {volumes.forest > 0 && (
-                        <>
-                            <motion.div
-                                key="tree1"
-                                className="absolute bottom-8 left-96"
-                                initial={{ x: 100, opacity: 0 }}
-                                animate={{ x: 0, opacity: 1 }}
-                                exit={{ x: 100, opacity: 0 }}
-                                transition={{ duration: 0.5, ease: "easeInOut" }}
-                            >
-                                <Tree />
-                            </motion.div>
-                            <motion.div
-                                key="bird1"
-                                initial={{opacity: 1}}
-                                exit={{ opacity: 0 }}
-                                transition={{ duration: 0.5, ease: "easeInOut" }}
-                            >
-                                <Bird1 style="absolute right-20 bottom-55" />
-                            </motion.div>
-                        </>
+                        <motion.div
+                            key="tree1"
+                            className="absolute bottom-8 left-96"
+                            initial={{ x: 100, opacity: 0 }}
+                            animate={{ x: 0, opacity: 1 }}
+                            exit={{ x: 100, opacity: 0 }}
+                            transition={{ duration: 0.5, ease: "easeInOut" }}
+                        >
+                            <Tree />
+                        </motion.div>
+                    )}
+
+                    {volumes.forest > 0 && (
+                        <motion.div
+                            key="bird1"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.5, ease: "easeInOut" }}
+                        >
+                            <Bird1 style="absolute right-20 bottom-55" />
+                        </motion.div>
                     )}
 
                     {volumes.forest > 50 && (
@@ -61,11 +66,37 @@ const ArtFrame = () => {
                             initial={{ x: -100, opacity: 0 }}
                             animate={{ x: 0, opacity: 1 }}
                             exit={{ x: -100, opacity: 0 }}
-                            transition={{ duration: 0.5, ease: "easeInOut", delay: 0.1 }}
+                            transition={{ duration: 0.5, ease: "easeInOut" }}
                         >
                             <Tree2 />
                         </motion.div>
                     )}
+
+                    {volumes.forest > 50 && (
+                        <motion.div
+                            key="bird2"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.5, ease: "easeInOut" }}
+                        >
+                            <Bird2 style="absolute left-0 bottom-70" />
+                        </motion.div>
+                    )}
+
+                    {
+                        volumes.river > 0 && 
+                        <motion.div
+                            key="river"
+                            className="absolute w-full h-full"
+                            initial={{opacity: 0 , x: -800 }}
+                            animate={{opacity: 1 , x: 300 }}
+                            exit={{opacity: 0 , x: -800}}
+                            transition={{ duration: 4, ease: "easeInOut" }}
+                        >
+                            <River style="absolute bottom-[-34px]" />
+                        </motion.div>
+                    }
                 </AnimatePresence>
 
                 <Character style="absolute bottom-[-60px]" />
@@ -75,7 +106,7 @@ const ArtFrame = () => {
                 <Stars />
             </div>
         </div>
-    );
-};
+    ); 20
+}
 
 export default ArtFrame;

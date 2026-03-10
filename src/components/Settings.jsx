@@ -1,13 +1,16 @@
 import { useContext, useState } from "react";
-import { AudioContext } from "./main/App"; // ← import the context, not a local variable
+import { AudioContext } from "./main/App"; 
 
 const Settings = () => {
-    const { rainPlayer, firePlayer, forestPlayer, setVolumes, sliders, setSliders } = useContext(AudioContext);
+    const { rainPlayer, firePlayer, forestPlayer, riverPlayer,
+        setVolumes,
+        sliders, setSliders } = useContext(AudioContext);
 
     const players = {
         rain: rainPlayer,
         fire: firePlayer,
         forest: forestPlayer,
+        river: riverPlayer,
     };
 
     const handleChange = (e) => {
@@ -55,6 +58,16 @@ const Settings = () => {
                     onChange={handleChange}
                 />
                 <label htmlFor="fire">Fire</label>
+            </div>
+            <div className="river-input flex items-center gap-6">
+                <input
+                    type="range"
+                    name="river"
+                    min="0" max="100" step="1"
+                    value={sliders.river}
+                    onChange={handleChange}
+                />
+                <label htmlFor="river">River</label>
             </div>
         </div>
     );

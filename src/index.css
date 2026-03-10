@@ -353,6 +353,20 @@ input[type="range"]::-moz-range-thumb {
   }
 }
 
+@keyframes flying2 {
+  0% {
+    background-position: 0px -96px;
+  }
+
+  33.33% {
+    background-position: -32px -96px;
+  }
+
+  66.66% {
+    background-position: -64px -96px;
+  }
+}
+
 @keyframes moveLeft {
   from {
     transform: translateX(300%);
@@ -374,5 +388,60 @@ input[type="range"]::-moz-range-thumb {
 
   66.66% {
     background-position: -64px -128px;
+  }
+}
+
+@keyframes moveRight {
+  from {
+    transform: translateX(0%);
+  }
+
+  to {
+    transform: translateX(250%);
+  }
+}
+
+@keyframes idleBird2 {
+  0% {
+    background-position: 0px -224px;
+  }
+
+  33.33% {
+    background-position: -32px -224px;
+  }
+
+  66.66% {
+    background-position: -64px -224px;
+  }
+}
+
+
+.bird2 {
+  background-position: 0;
+  animation: flying2 0.5s steps(1) 7,
+    moveRight 2s linear forwards;
+}
+
+
+
+/* River */
+
+
+.river {
+  width: 48px;
+  height: 48px;
+  background-image: url(/river.png);
+  background-size: 576px 672px;
+  background-position: -336px -48px;
+  animation: riverFlow 0.8s steps(2) infinite;
+  image-rendering: pixelated;
+}
+
+@keyframes riverFlow {
+  from {
+    background-position: -336px -48px;
+  }
+  to {
+    background-position: -384px -48px;
   }
 }
