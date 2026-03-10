@@ -1,33 +1,43 @@
-import Character from "../Character";
-import FallingStar from "../FallingStar";
-import Fire from "../Fire";
-import Landscape from "../Landscape";
-import Rain from "../Rain";
+import { createContext, useRef, useState } from "react";
+import ArtFrame from "../ArtFrame";
 import Settings from "../Settings";
-import Tree from "../Tree";
-import Wind from "../Wind";
+import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+
+export const AudioContext = createContext();
 
 const App = () => {
+  const rainPlayer = useRef(null);
+  const firePlayer = useRef(null);
+  const forestPlayer = useRef(null);
+  const [volumes, setVolumes] = useState({ rain: 0, fire: 0, forest: 0 });
+  const [sliders, setSliders] = useState({ rain: 0, fire: 0, forest: 0 });
+
   return (
     <>
-      <Settings />
-      <div className="art-frame overflow-hidden relative flex justify-evenly items-center h-[70%] w-160 border-2 border-mist-700 rounded-2xl">
-        <Landscape style="absolute bottom-0" />
-        <Fire style="absolute bottom-8 left-30" />
-        <Tree style="absolute bottom-8 left-96" />
-        <Character style="absolute bottom-[-8%]" />
-        <FallingStar style="absolute top-30 left-30" />
-        <Rain density={100} />
-        <Wind power={2} style="absolute opacity-[0.3] left-40" />
-        <div className="star absolute top-5 left-9 h-0.5 w-0.5 bg-white rounded-[50%]"></div>
-        <div className="star absolute top-16 left-16 h-0.5 w-0.5 bg-white rounded-[50%]"></div>
-        <div className="star absolute top-7 left-60 h-0.5 w-0.5 bg-white rounded-[50%]"></div>
-        <div className="star absolute top-20 right-28 h-1 w-1 bg-white rounded-[50%]"></div>
-        <div className="star absolute top-48 h-0.5 w-0.5 bg-white rounded-[50%]"></div>
-        <div className="star absolute top-50 left-4 h-0.5 w-0.5 bg-white rounded-[50%]"></div>
-      </div>
+      <AudioContext.Provider value={{
+        rainPlayer, firePlayer, forestPlayer,
+        volumes, setVolumes,
+        sliders, setSliders
+      }}>
+        <BrowserRouter>
+          <div className="main-container relative flex flex-col justify-center items-center h-full w-full">
+            <nav className="w-full flex justify-around items-center absolute top-10">
+              <Link to="/">Main</Link>
+              <Link to="/settings">Settings</Link>
+            </nav>
+
+            <Routes>
+              <Route path="/settings" element={<Settings />} />
+            </Routes>
+          </div>
+        </BrowserRouter>
+        <ArtFrame />
+        <audio ref={rainPlayer} src="/sounds/rain.wav" loop />
+        <audio ref={firePlayer} src="/sounds/fire.mp3" loop />
+        <audio ref={forestPlayer} src="/sounds/forest2.mp3" loop />
+      </AudioContext.Provider>
     </>
-  )
-}
+  );
+};
 
 export default App;

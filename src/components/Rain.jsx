@@ -1,9 +1,12 @@
-const Rain = ({density}) => {
-    const drops =
+import { useMemo } from "react";
+
+const Rain = ({ density }) => {
+    const drops = useMemo(() =>
         Array.from({ length: density }, () => ({
             left: Math.random() * 100,
             delay: -(Math.random() * 10),
         }))
+        , [density]);
 
 
     return (

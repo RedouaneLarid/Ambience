@@ -1,6 +1,6 @@
-const Tree = ({style}) => {
-    return(
-        <div className={`tree-container ${style}`}></div>
+const Tree = ({ style }) => {
+    return (
+        <div className={`tree-container ${style}`} />
     );
 }
 
