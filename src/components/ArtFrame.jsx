@@ -85,28 +85,30 @@ const ArtFrame = () => {
                     )}
 
                     {
-                        volumes.river > 0 && 
+                        volumes.river > 0 &&
                         <motion.div
                             key="river"
                             className="absolute w-full h-full"
-                            initial={{opacity: 0}}
-                            animate={{opacity: 1}}
-                            exit={{opacity: 0}}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
                             transition={{ duration: 2, ease: "easeInOut" }}
                         >
                             <River style="absolute bottom-[-34px]" />
                         </motion.div>
                     }
+
+                    {volumes.wind &&
+                        <Wind power={volumes.wind / 15} style="absolute opacity-[0.1] left-40" />}
                 </AnimatePresence>
 
                 <Character style="absolute bottom-[-60px]" />
                 <FallingStar style="absolute top-30 left-30" />
                 <Rain density={volumes.rain * 2} />
-                <Wind power={0} style="absolute opacity-[0.3] left-40" />
                 <Stars />
             </div>
         </div>
-    ); 20
+    ); 
 }
 
 export default ArtFrame;

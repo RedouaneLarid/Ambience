@@ -1,8 +1,8 @@
 import { useContext, useState } from "react";
-import { AudioContext } from "./main/App"; 
+import { AudioContext } from "./main/App";
 
 const Settings = () => {
-    const { rainPlayer, firePlayer, forestPlayer, riverPlayer,
+    const { rainPlayer, firePlayer, forestPlayer, riverPlayer, windPlayer,
         setVolumes,
         sliders, setSliders } = useContext(AudioContext);
 
@@ -11,6 +11,7 @@ const Settings = () => {
         fire: firePlayer,
         forest: forestPlayer,
         river: riverPlayer,
+        wind: windPlayer,
     };
 
     const handleChange = (e) => {
@@ -68,6 +69,16 @@ const Settings = () => {
                     onChange={handleChange}
                 />
                 <label htmlFor="river">River</label>
+            </div>
+            <div className="wind-input flex items-center gap-6">
+                <input
+                    type="range"
+                    name="wind"
+                    min="0" max="100" step="1"
+                    value={sliders.wind}
+                    onChange={handleChange}
+                />
+                <label htmlFor="wind">Wind</label>
             </div>
         </div>
     );
