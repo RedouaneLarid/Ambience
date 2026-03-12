@@ -1,10 +1,7 @@
 import { createContext, useRef, useState, useEffect } from "react";
 import ArtFrame from "../ArtFrame";
 import Settings from "../Settings";
-import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
-import MainPage from "./MainPage";
 import { Heart } from "lucide-react";
-import Timer from "./Timer";
 
 export const AudioContext = createContext();
 
@@ -59,11 +56,11 @@ const App = () => {
         </a>
         <Settings />
         <ArtFrame />
-        <audio ref={rainPlayer} src="/sounds/rain.wav" loop />
-        <audio ref={firePlayer} src="/sounds/fire.mp3" loop />
-        <audio ref={forestPlayer} src="/sounds/forest2.mp3" loop />
-        <audio ref={riverPlayer} src="/sounds/river.mp3" loop />
-        <audio ref={windPlayer} src="/sounds/wind.mp3" loop />
+        <audio ref={rainPlayer} src="./sounds/rain.wav" loop />
+        <audio ref={firePlayer} src="./sounds/fire.mp3" loop />
+        <audio ref={forestPlayer} src="./sounds/forest2.mp3" loop />
+        <audio ref={riverPlayer} src="./sounds/river.mp3" loop />
+        <audio ref={windPlayer} src="./sounds/wind.mp3" loop />
       </AudioContext.Provider>
     </>
   );
